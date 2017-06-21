@@ -26,6 +26,9 @@ NeoBundle 'kannokanno/previm'
 "vim-auto-save install
 NeoBundle 'vim-scripts/vim-auto-save'
 
+"jedi-vim install
+NeoBundle 'davidhalter/jedi-vim'
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -39,7 +42,7 @@ noremap <C-L> :Unite -buffer-name=file file<CR>
 "NERDTree
 nnoremap <silent><C-F> :NERDTreeToggle<CR>
 "C-F > View file list
-"ww [on file list] > change screen
+"C-ww [on file list] > change screen
 "t [on file list] > file open to tab
 "T [on file list] > file open to tab but not tab changed
 "gt [on file list] > change tab
@@ -60,4 +63,10 @@ noremap <C-M> :PrevimOpen<CR>
 
 "vim-auto-save
 let g:auto_save = 0
-noremap <C-W> :let g:auto_save = 1<CR>
+noremap <C-W><C-A> :let g:auto_save = 1<CR>
+
+"jedi-vim
+let g:jedi#auto_initialization = 1
+let g:jedi#auto_vim_configuration = 0
+autocmd FileType python setlocal completeopt-=preview
+let g:jedi#popup_select_first = 0
