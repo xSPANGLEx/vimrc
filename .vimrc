@@ -20,6 +20,12 @@ NeoBundle 'Shougo/neomru.vim'
 "nerdtree install
 NeoBundle 'scrooloose/nerdtree'
 
+"previm install
+NeoBundle 'kannokanno/previm'
+
+"vim-auto-save install
+NeoBundle 'vim-scripts/vim-auto-save'
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -43,3 +49,15 @@ nnoremap <silent><C-F> :NERDTreeToggle<CR>
 "s [on file list] > file open to vertical
 "gs [on file list] > file open to vertical but not screen changed
 "C [on file list] > select directory for change destination root directory
+
+"previm
+let g:previm_open_cmd = 'open -a chrome'
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+noremap <C-M> :PrevimOpen<CR>
+
+"vim-auto-save
+let g:auto_save = 0
+noremap <C-W> :let g:auto_save = 1<CR>
