@@ -70,3 +70,17 @@ let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 0
 autocmd FileType python setlocal completeopt-=preview
 let g:jedi#popup_select_first = 0
+
+"vimdiff                                                                                                                                               
+function! s:vimdiff_in_newtab(...)                                                                                                                     
+  if a:0 == 1                                                                                                                                          
+    tabedit %:p                                                                                                                                        
+    exec 'rightbelow vertical diffsplit ' . a:1                                                                                                        
+  else                                                                                                                                                 
+    exec 'tabedit ' . a:1                                                                                                                              
+    for l:file in a:000[1 :]                                                                                                                           
+      exec 'rightbelow vertical diffsplit ' . l:file                                                                                                   
+    endfor                                                                                                                                             
+  endif                                                                                                                                                
+endfunction                                                                                                                                            
+command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)  
